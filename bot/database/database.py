@@ -21,12 +21,7 @@ class Database:
         """
         Create text index if not in db
         """
-        await self.fcol.create_index([("file_name", "text")])
-
-
-    def new_chat(self, group_id, channel_id, channel_name):
-        """
-        Create a document in db if the chat is new
+        await self.fcol.create_index([("file_n if the chat is new
         """
         try:
             group_id, channel_id = int(group_id), int(channel_id)
@@ -82,10 +77,7 @@ class Database:
 
     async def find_group_id(self, channel_id: int):
         """
-        Find all group id which is connected to a channel 
-        for add a new files to db
-        """
-        data = self.col.find({})
+        Find all gro
         group_list = []
 
         for group_id in await data.to_list(length=50): # No Need Of Even 50
@@ -469,28 +461,4 @@ class Database:
         file_id = None
         file_type = None
         file_name = None
-        file_caption = None
-        
-        if file:
-            file_id = file.get("file_id")
-            file_name = file.get("file_name")
-            file_type = file.get("file_type")
-            file_caption = file.get("file_caption")
-        return file_id, file_name, file_caption, file_type
-
-
-    async def cf_count(self, group_id: int, channel_id: int):
-        """
-        A Funtion To count number of filter in channel
-        w.r.t the connect group
-        """
-        return await self.fcol.count_documents({"chat_id": channel_id, "group_id": group_id})
-    
-    
-    async def tf_count(self, group_id: int):
-        """
-        A Funtion to count total filters of a group
-        """
-        return await self.fcol.count_documents({"group_id": group_id})
-
-
+        file_caption = Non
